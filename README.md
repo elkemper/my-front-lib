@@ -1,6 +1,6 @@
 # My SelfHosted Lib. Front
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Selfhosted app for search and download files from Zip Archives.
 
 ## Available Scripts
 
