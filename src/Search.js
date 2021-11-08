@@ -1,6 +1,3 @@
-import logo from "./logo.svg";
-import "./App.css";
-// import { SearchInput, Button } from "react-onsenui";
 import React, { useState } from "react";
 import config from "./config";
 import BookCard from './bookCard'
