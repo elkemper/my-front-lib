@@ -18,3 +18,5 @@ testZip.zip
 #VSCode
 .vscode
 
+#Build
+build/
