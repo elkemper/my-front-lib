@@ -1,3 +1,3 @@
 export default {
-    apiUrl: `http://${process.env.API_URL}:${process.env.API_PORT}` ||  ''
+    apiUrl: `http://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}` ||  ''
 }

@@ -4,7 +4,7 @@ import config from "./config";
 export default function BookCard(props) {
   const { book } = props;
   
-  const url = `${config.apiUrl}/books/${book.BookID}/Download`
+  const url = `${config.apiUrl}/books/${book.BookID}/download`
   const dowloadBook = async  (bookId) =>{
     await fetch(url)
   }
