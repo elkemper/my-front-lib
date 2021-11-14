@@ -5,3 +5,5 @@ if [ -f "$FILE" ]; then
 else    
     npm run build
 fi
+
+npx serve -s build
