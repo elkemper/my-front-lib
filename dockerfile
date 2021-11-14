@@ -15,4 +15,4 @@ RUN npm install --silent
 COPY . ./
 
 # start app
-CMD ["sh","./build.sh", "&&", "npx", "serve", "build"]
+CMD ["sh","./build-and-start.sh"]
