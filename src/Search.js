@@ -5,10 +5,13 @@ import BookCard from './bookCard'
 export default function Search() {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
+  const [isLoading, setLoading] = useState(false)
 
   const searchBooks = async (event) => {
     event.preventDefault();
     console.log("searching");
+    setLoading(true)
+    setBooks([])
     const url = `${config.apiUrl}/search?q=${query}`;
 
     try {
@@ -16,11 +19,18 @@ export default function Search() {
       const res = await fetch(url);
       const data = await res.json();
       console.log(data);
+      setLoading(false)
       setBooks(data.result);
     } catch (e) {
       console.error(e);
+      setLoading(false)
+
     }
   };
+
+  const Loading = ()=>{
+    return (<div><h4 className='loading-bar'>Loading</h4></div>)
+  }
 
   return (
     <>
@@ -40,6 +50,7 @@ export default function Search() {
           Search
         </button>
       </form>
+      {isLoading ? <Loading/> : null}
       <div className="card-list">
         {books.map((book) => (
           <BookCard book={book} key={book.BookID}/>

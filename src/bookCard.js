@@ -3,11 +3,11 @@ import config from "./config";
 
 export default function BookCard(props) {
   const { book } = props;
-  
-  const url = `${config.apiUrl}/books/${book.BookID}/download`
-  const dowloadBook = async  (bookId) =>{
-    await fetch(url)
-  }
+
+  const url = `${config.apiUrl}/books/${book.BookID}/download`;
+  const dowloadBook = async (bookId) => {
+    await fetch(url);
+  };
   return (
     <div className="card">
       <div className="card--content">
@@ -18,11 +18,13 @@ export default function BookCard(props) {
             {book.FirstName + " " + book.MiddleName + " " + book.LastName}
           </small>
         </p>
-          <small>Language: {book.Lang}</small>
-          <a href = {url}>
-
-        <button className = 'button--download' onClick={dowloadBook}>Dowload</button>
-          </a>
+        <small>Language: {book.Lang}</small>
+          <br />
+        <a href={url}>
+          <button className="button--download" onClick={dowloadBook}>
+            Dowload
+          </button>
+        </a>
       </div>
     </div>
   );
