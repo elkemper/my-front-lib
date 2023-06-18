@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Search from './Search';
 import reportWebVitals from './reportWebVitals';
-
-
+import App from './app';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1 className='title'>LibRusEc db</h1>
-    <div className="container">  
-    <Search  />
+    <h1 className="title">HomeLab Lib</h1>
+    <div className="container">
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </div>
   </React.StrictMode>,
   document.getElementById('root')
