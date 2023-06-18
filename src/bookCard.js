@@ -29,7 +29,7 @@ export default function BookCard(props) {
         data,
       });
 
-      return response.data;
+      return window.location = response.data.downloadUrl
     } catch (error) {
       if (error.response) {
         const { status } = error.response;
@@ -63,11 +63,9 @@ export default function BookCard(props) {
         </p>
         <small>Language: {book.Lang}</small>
         <br />
-        <a href={url}>
-          <button className="button--download" onClick={downloadBook}>
-            Download
-          </button>
-        </a>
+        <button className="button--download" onClick={downloadBook}>
+          Download
+        </button>
       </div>
     </div>
   );
