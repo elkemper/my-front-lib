@@ -7,6 +7,8 @@ import axios from 'axios';
 export default function Search() {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
+  const [pageNo, setPageNo] = useState(0)
+  const [count, setCount] = useState(0)
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -54,10 +56,13 @@ export default function Search() {
 
   const searchBooks = async (event) => {
     event.preventDefault();
+    if(query==='') {
+      return
+    }
     console.log('searching');
     setLoading(true);
     setBooks([]);
-    const url = `search?q=${query}`;
+    const url = `search?q=${query}${pageNo ?'&p='+pageNo : ''}`;
 
     try {
       console.log(query);
@@ -65,6 +70,9 @@ export default function Search() {
       console.log(data);
       setLoading(false);
       setBooks(data.result);
+      if(data.count) {
+        setCount(data.count)
+      }
     } catch (e) {
       console.error(e);
       setLoading(false);
@@ -89,6 +97,10 @@ export default function Search() {
         <button className="button" type="submit">
           Search
         </button>
+          <label className="label" htmlFor="pageNo">Page: </label><input className="input" type="text" name="p" value={pageNo} onChange={(e) => setPageNo(e.target.value)}></input>
+        <div>
+        <label className="label" htmlFor="count">Found books: {count}</label>
+          </div>
       </form>
       {isLoading ? <Loading /> : null}
       <div className="card-list">
