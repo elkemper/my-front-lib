@@ -1,4 +1,4 @@
-import { useNavigate, redirect, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import config from './config';
 import BookCard from './bookCard';
@@ -7,8 +7,8 @@ import axios from 'axios';
 export default function Search() {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
-  const [pageNo, setPageNo] = useState(0)
-  const [count, setCount] = useState(0)
+  const [pageNo, setPageNo] = useState(0);
+  const [count, setCount] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -56,13 +56,13 @@ export default function Search() {
 
   const searchBooks = async (event) => {
     event.preventDefault();
-    if(query==='') {
-      return
+    if (query === '') {
+      return;
     }
     console.log('searching');
     setLoading(true);
     setBooks([]);
-    const url = `search?q=${query}${pageNo ?'&p='+pageNo : ''}`;
+    const url = `search?q=${query}${pageNo ? '&p=' + pageNo : ''}`;
 
     try {
       console.log(query);
@@ -70,8 +70,8 @@ export default function Search() {
       console.log(data);
       setLoading(false);
       setBooks(data.result);
-      if(data.count) {
-        setCount(data.count)
+      if (data.count) {
+        setCount(data.count);
       }
     } catch (e) {
       console.error(e);
@@ -97,10 +97,15 @@ export default function Search() {
         <button className="button" type="submit">
           Search
         </button>
-          <label className="label" htmlFor="pageNo">Page: </label><input className="input" type="text" name="p" value={pageNo} onChange={(e) => setPageNo(e.target.value)}></input>
+        <label className="label" htmlFor="pageNo">
+          Page:{' '}
+        </label>
+        <input className="input" type="text" name="p" value={pageNo} onChange={(e) => setPageNo(e.target.value)}></input>
         <div>
-        <label className="label" htmlFor="count">Found books: {count}</label>
-          </div>
+          <label className="label" htmlFor="count">
+            Found books: {count}
+          </label>
+        </div>
       </form>
       {isLoading ? <Loading /> : null}
       <div className="card-list">
