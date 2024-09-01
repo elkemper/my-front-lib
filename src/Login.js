@@ -13,12 +13,16 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      const body = {
+        username: username.trim(),
+        password: password.trim(),
+      };
       const response = await fetch(`${config.apiUrl}/auth`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(body),
       });
       if (response.ok) {
         const { token } = await response.json();
