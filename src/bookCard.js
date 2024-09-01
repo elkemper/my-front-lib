@@ -29,23 +29,22 @@ export default function BookCard(props) {
         data,
       });
 
-      return window.location = response.data.downloadUrl
+      return (window.location = config.apiUrl + response.data.downloadUrl);
     } catch (error) {
       if (error.response) {
         const { status } = error.response;
-
+        debugger;
         if (status === 401) {
           localStorage.removeItem('token');
           window.dispatchEvent(new Event('storage'));
           navigate('/');
-        } else {
+        } else if (status === 404) {
           console.error(error);
         }
       } else if (error.request) {
         console.error(error);
-      } else {
-        console.error(error);
       }
+      console.error(error);
 
       throw error;
     }
